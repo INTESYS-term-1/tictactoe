@@ -24,6 +24,8 @@ public class main {
 			}
 		}
 
+		board[0][0].setValue('X');
+
 		TicTacState initialState = new TicTacState(board);
 
 		// initialize empty board
@@ -43,13 +45,26 @@ public class main {
 		int round = 0;
 
 		do {
-			System.out.println("Input x coordinate: ");
-			inputX = sc.nextInt();
+			System.out.println();
 
-			System.out.println("Input y coordinate: ");
-			inputY = sc.nextInt();
+			while (1 == 1) {
 
-			board[inputX][inputY].setValue('X');
+				System.out.println("Input x coordinate: ");
+				inputX = sc.nextInt();
+
+				System.out.println("Input y coordinate: ");
+				inputY = sc.nextInt();
+
+				try {
+					if (board[inputX][inputY].getValue() == ' ') {
+						board[inputX][inputY].setValue('O');
+						break;
+					}
+				} catch (Exception e) {
+					System.out.println("Provide coordinates less than 3");
+				}
+			}
+
 			initialState = new TicTacState(board);
 
 			explore.add(initialState);
@@ -118,7 +133,10 @@ public class main {
 				}
 
 			}
+			
+			
 
+			System.out.println();
 			System.out.println("Board: ");
 
 			for (int k = 0; k < 3; k++) {

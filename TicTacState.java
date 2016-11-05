@@ -27,7 +27,7 @@ public class TicTacState {
 //		}
 		
 		board = initBoard;
-		xoTurn = false;
+		xoTurn = true;
 		level = 0;
 	}
 
@@ -58,9 +58,9 @@ public class TicTacState {
 
 	public void computeScore() {
 		if (xWin())
-			gameScore = -1;
-		else if (oWin())
 			gameScore = 1;
+		else if (oWin())
+			gameScore = -1;
 		else
 			gameScore = 0;
 
