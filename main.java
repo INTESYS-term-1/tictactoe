@@ -39,19 +39,24 @@ public class main {
 
 			System.out.println("Input y coordinate: ");
 			inputY = sc.nextInt();
+			
 			init[inputX][inputY] = 'X';
 			initialState = new TicTacState(init);
 
+			
+			
+			
+			
 			explore.add(initialState);
 
 			while (!explore.isEmpty()) {
 				currState = explore.get(0);
 				explore.remove(0);
-				visited.add(currState);
+				visited.add(currState);	
 
-				// if (currState.isLeaf()) {
-				// currState.computeScore();
-				// }
+				if (currState.isLeaf()) {
+					currState.computeScore();
+				}
 
 				// else{
 
