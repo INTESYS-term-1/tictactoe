@@ -19,7 +19,8 @@ public class main {
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				board[i][j].setValue(' ');
+				Cell cell = new Cell(i, j, ' ');
+				board[i][j] = cell;
 			}
 		}
 
@@ -108,13 +109,29 @@ public class main {
 				// explore.get(j).printBoard();
 				// System.out.println(explore.get(j).getScore());
 
-				if (explore.get(j).getLevel() == round + 1
-						&& (explore.get(j).getScore() == 1 || explore.get(j).getScore() == 0)) {
-					explore.get(j).printBoard();
+				if (explore.get(j).getLevel() == 1 && explore.get(j).getScore() == 1) {
+					// explore.get(j).printBoard();
 					board = explore.get(j).getBoard();
+				} else if (explore.get(j).getLevel() == 1 && explore.get(j).getScore() == 0) {
+					board = explore.get(j).getBoard();
+
 				}
 
 			}
+
+			System.out.println("Board: ");
+
+			for (int k = 0; k < 3; k++) {
+				System.out.println();
+
+				for (int l = 0; l < 3; l++) {
+					System.out.print(board[k][l].getValue());
+					System.out.print(" | ");
+				}
+			}
+
+			explore = new ArrayList<TicTacState>();
+			visited = new ArrayList<TicTacState>();
 
 			round++;
 		} while (inputX < 3 && inputY < 3);
