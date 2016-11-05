@@ -14,14 +14,20 @@ public class TicTacState {
 	int childrenLeft;
 	int level;
 
-	public TicTacState(char[][] initBoard) { // use this constructor for initial
+	public Cell[][] getBoard() {
+		return board;
+	}
+
+	public TicTacState(Cell[][] initBoard) { // use this constructor for initial
 												// and final board state
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				this.board[i][j] = new Cell(i, j, initBoard[i][j]);
-			}
-		}
-		xoTurn = true;
+//		for (int i = 0; i < 3; i++) {
+//			for (int j = 0; j < 3; j++) {
+//				this.board[i][j] = new Cell(i, j, initBoard[i][j]);
+//			}
+//		}
+		
+		board = initBoard;
+		xoTurn = false;
 		level = 0;
 	}
 
@@ -129,9 +135,9 @@ public class TicTacState {
 		// }
 		// }
 		// }
-		
-		for(int i = 0;  i< 3; i++){
-			for(int j = 0; j<3; j++){
+
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
 				if (board[i][j].getValue() == ' ') {
 					return false;
 				}
@@ -265,7 +271,7 @@ public class TicTacState {
 				for (int j = 0; j < 3; j++) {
 					if (board[i][j].getValue() == ' ') {
 						tempBoard = this.board;
-						states.add(new TicTacState(tempBoard, this, false, level++, i, j));
+						states.add(new TicTacState(tempBoard, this, false, level + 1, i, j));
 					}
 				}
 			}
@@ -275,7 +281,7 @@ public class TicTacState {
 				for (int j = 0; j < 3; j++) {
 					if (board[i][j].getValue() == ' ') {
 						tempBoard = this.board;
-						states.add(new TicTacState(tempBoard, this, true, level++, i, j));
+						states.add(new TicTacState(tempBoard, this, true, level + 1, i, j));
 					}
 				}
 			}
@@ -288,10 +294,14 @@ public class TicTacState {
 	}
 
 	public int getScore() {
-		return score;
+		return gameScore;
 	}
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public int getLevel() {
+		return level;
 	}
 }

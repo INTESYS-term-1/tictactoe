@@ -15,9 +15,15 @@ public class main {
 		ArrayList<TicTacState> visited = new ArrayList<TicTacState>();
 		ArrayList<TicTacState> nextStates = new ArrayList<TicTacState>();
 
-		char[][] init = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+		Cell[][] board = new Cell[3][3];
 
-		TicTacState initialState = new TicTacState(init);
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				board[i][j].setValue(' ');
+			}
+		}
+
+		TicTacState initialState = new TicTacState(board);
 
 		// initialize empty board
 		TicTacState currState = initialState;
@@ -26,12 +32,14 @@ public class main {
 		initialState.printBoard();
 
 		// int count = 0;
-		explore.add(initialState);
+		// explore.add(initialState);
 
 		final long startTime = System.currentTimeMillis();
 
 		int inputX = 0;
 		int inputY = 0;
+
+		int round = 0;
 
 		do {
 			System.out.println("Input x coordinate: ");
@@ -39,43 +47,76 @@ public class main {
 
 			System.out.println("Input y coordinate: ");
 			inputY = sc.nextInt();
-			
-			init[inputX][inputY] = 'X';
-			initialState = new TicTacState(init);
 
-			
-			
-			
-			
+			board[inputX][inputY].setValue('X');
+			initialState = new TicTacState(board);
+
 			explore.add(initialState);
-
-			while (!explore.isEmpty()) {
-				currState = explore.get(0);
-				explore.remove(0);
-				visited.add(currState);	
+			//
+			// while (!explore.isEmpty()) {
+			// currState = explore.get(0);
+			// explore.remove(0);
+			// visited.add(currState);
+			//
+			// // if (currState.isLeaf()) {
+			// // currState.computeScore();
+			// // }
+			//
+			// nextStates = currState.getNextStates();
+			// // lowest = findLowestScore(nextStates);
+			// for (TicTacState s : nextStates) {
+			// if (!visited.contains(s) && !explore.contains(s)) {
+			// // if(lowest <= s.getScore())
+			// //explore.add(s);// uncomment for BFS
+			//
+			// s.printBoard();
+			// // s.printBoard();
+			// explore.add(0, s);//uncomment for DFS
+			// }
+			// // count++;
+			// }
+			// }
+			//
+			//
+			int i = 0;
+			while (i < explore.size()) {
+				currState = explore.get(i);
+				visited.add(currState);
 
 				if (currState.isLeaf()) {
 					currState.computeScore();
 				}
 
-				// else{
-
 				nextStates = currState.getNextStates();
 				// lowest = findLowestScore(nextStates);
 				for (TicTacState s : nextStates) {
-					if (!visited.contains(s)
-							&& !explore.contains(s) /* && s.isValid() */) {
+					if (!visited.contains(s) && !explore.contains(s)) {
 						// if(lowest <= s.getScore())
 						explore.add(s);// uncomment for BFS
 
-						s.printBoard();
+						// s.printBoard();
+
 						// s.printBoard();
 						// explore.add(0, s);//uncomment for DFS
 					}
 					// count++;
 				}
-				// }
+				i++;
 			}
+
+			for (int j = 0; j < explore.size(); j++) {
+				// explore.get(j).printBoard();
+				// System.out.println(explore.get(j).getScore());
+
+				if (explore.get(j).getLevel() == round + 1
+						&& (explore.get(j).getScore() == 1 || explore.get(j).getScore() == 0)) {
+					explore.get(j).printBoard();
+					board = explore.get(j).getBoard();
+				}
+
+			}
+
+			round++;
 		} while (inputX < 3 && inputY < 3);
 
 		final long endTime = System.currentTimeMillis();
