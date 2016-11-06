@@ -34,9 +34,6 @@ public class main {
 		System.out.println("Initial Board");
 		initialState.printBoard();
 
-		// int count = 0;
-		// explore.add(initialState);
-
 		final long startTime = System.currentTimeMillis();
 
 		int inputX = 0;
@@ -121,17 +118,11 @@ public class main {
 			}
 
 			for (int j = 0; j < explore.size(); j++) {
-				// explore.get(j).printBoard();
-				// System.out.println(explore.get(j).getScore());
-
 				if (explore.get(j).getLevel() == 1 && explore.get(j).getScore() == 1) {
-					// explore.get(j).printBoard();
 					board = explore.get(j).getBoard();
 				} else if (explore.get(j).getLevel() == 1 && explore.get(j).getScore() == 0) {
 					board = explore.get(j).getBoard();
-
 				}
-
 			}
 			
 			

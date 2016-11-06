@@ -20,12 +20,6 @@ public class TicTacState {
 
 	public TicTacState(Cell[][] initBoard) { // use this constructor for initial
 												// and final board state
-//		for (int i = 0; i < 3; i++) {
-//			for (int j = 0; j < 3; j++) {
-//				this.board[i][j] = new Cell(i, j, initBoard[i][j]);
-//			}
-//		}
-		
 		board = initBoard;
 		xoTurn = true;
 		level = 0;
@@ -36,7 +30,6 @@ public class TicTacState {
 																											// constructor
 																											// for
 																											// generate
-
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				this.board[i][j] = new Cell(i, j, initBoard[i][j].getValue());
@@ -128,13 +121,7 @@ public class TicTacState {
 	public boolean isLeaf() {
 		if (xWin() || oWin())
 			return true;
-		// for (Cell[] row : board) {
-		// for (Cell cell : row) {
-		// if (cell.getValue() == ' ') {
-		// return false;
-		// }
-		// }
-		// }
+
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -188,84 +175,6 @@ public class TicTacState {
 	public ArrayList<TicTacState> getNextStates() {
 		ArrayList<TicTacState> states = new ArrayList<TicTacState>();
 		Cell[][] tempBoard;
-		//
-		// if(xoTurn == true){
-		// if(board[0][0].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 0,0));
-		// }
-		// if(board[0][1].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 0,1));
-		// }
-		// if(board[0][2].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 0,2));
-		// }
-		// if(board[1][0].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 1, 0));
-		// }
-		// if(board[1][1].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 1, 1));
-		// }
-		// if(board[1][2].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 1, 2));
-		// }
-		// if(board[2][0].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 2, 0));
-		// }
-		// if(board[2][1].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 2, 1));
-		// }
-		// if(board[2][2].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, false, level++, 2, 2));
-		// }
-		// }
-		//
-		// if(xoTurn == false){
-		// if(board[0][0].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 0, 0));
-		// }
-		// if(board[0][1].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 0, 1));
-		// }
-		// if(board[0][2].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 0, 2));
-		// }
-		// if(board[1][0].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 1, 0));
-		// }
-		// if(board[1][1].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 1, 1));
-		// }
-		// if(board[1][2].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 1, 2));
-		// }
-		// if(board[2][0].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 2, 0));
-		// }
-		// if(board[2][1].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 2, 1));
-		// }
-		// if(board[2][2].getValue() == ' '){
-		// tempBoard = this.board;
-		// states.add(new TicTacState(tempBoard, this, true, level++, 2, 2));
-		// }
-		// }
 		if (xoTurn == true) {
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 3; j++) {
